@@ -11,8 +11,13 @@ object Build {
 	val VERSION: String
 
 	init {
-		val properties = Properties()
-		properties.load(this.javaClass.getResourceAsStream("/version.properties"))
-		VERSION = properties.getProperty("version")
+		val stream = javaClass.getResourceAsStream("/version.properties")
+
+		if (stream != null) {
+			properties.load(stream)
+			stream.close()
+		}
+		VERSION = properties.getProperty("version", "dev")
+
 	}
 }
