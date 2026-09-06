@@ -12,7 +12,8 @@ object Build {
 
 	init {
 		val stream = javaClass.getResourceAsStream("/version.properties")
-
+		val properties = Properties()
+		
 		if (stream != null) {
 			properties.load(stream)
 			stream.close()
